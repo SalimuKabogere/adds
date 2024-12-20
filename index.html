@@ -5,12 +5,21 @@
 </head>
 <body>
   <script>
+    // Fetch the user's IP address using a secure API
     fetch('https://api.ipify.org?format=json')
       .then(response => response.json())
       .then(data => {
-        var ip = data.ip;
-        var formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + ip;
+        const ip = data.ip; // Capture the IP address
+
+        // Construct the pre-filled form URL
+        const formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + encodeURIComponent(ip);
+
+        // Redirect the user to the Google Form with the IP address pre-filled
         window.location.href = formUrl;
+      })
+      .catch(error => {
+        console.error('Error fetching IP address:', error);
+        alert('Unable to retrieve your IP address. Please try again later.');
       });
   </script>
 </body>
