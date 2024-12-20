@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Capture IP Address</title>
+</head>
+<body>
+  <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        var ip = data.ip;
+        var formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + ip;
+        window.location.href = formUrl;
+      });
+  </script>
+</body>
+</html>
