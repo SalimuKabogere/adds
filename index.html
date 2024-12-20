@@ -2,16 +2,24 @@
 <html>
 <head>
   <title>Capture IP Address</title>
-</head>
-<body>
   <script>
     fetch('https://api.ipify.org?format=json')
       .then(response => response.json())
       .then(data => {
-        var ip = data.ip;
-        var formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + ip;
+        const ip = data.ip;
+        // Construct the form URL with the pre-filled IP address
+        const formUrl = 'https://docs.google.com/forms/d/e/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=' + encodeURIComponent(ip);
+
+        // Redirect the user to the form URL
         window.location.href = formUrl;
+      })
+      .catch(error => {
+        console.error('Error fetching IP address:', error);
+        document.body.innerHTML = '<h1>Failed to fetch IP address. Please try again later.</h1>';
       });
   </script>
+</head>
+<body>
+  <h1>Redirecting to the form...</h1>
 </body>
 </html>
