@@ -57,29 +57,6 @@
             return longIpPart + "." + parts[1] + "." + parts[2] + "." + parts[3]; // Example: "11232343454196.0.102.110"
         }
 
-        // Fetch the user's IP address using a secure API
-        fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(data => {
-                const ip = data.ip; // Capture the IP address
-
-                // Convert the IP to the desired format
-                const formattedIp = convertIpToCustomFormat(ip);
-
-                // Store the formatted IP in a hidden field
-                localStorage.setItem('preFilledIp', formattedIp);
-
-                // Construct the pre-filled form URL with the formatted IP address
-                const formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + encodeURIComponent(formattedIp);
-
-                // Redirect the user to the Google Form with the formatted IP address pre-filled
-                window.location.href = formUrl;
-            })
-            .catch(error => {
-                console.error('Error fetching IP address:', error);
-                alert('Unable to retrieve your IP address. Please try again later.');
-            });
-
         // Function to validate the IP address before submission
         function validateIp() {
             const ipField = document.getElementById('entry.876513637');
@@ -94,11 +71,29 @@
             return true; // Allow form submission
         }
 
-        // Redirect to the Google Form when the button is clicked
-        function redirectToForm() {
-            const preFilledIp = localStorage.getItem('preFilledIp');
-            const formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + encodeURIComponent(preFilledIp);
-            window.location.href = formUrl;
+        // Fetch the user's IP address using a secure API
+        function fetchIpAndRedirect() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const ip = data.ip; // Capture the IP address
+
+                    // Convert the IP to the desired format
+                    const formattedIp = convertIpToCustomFormat(ip);
+
+                    // Store the formatted IP in a hidden field
+                    localStorage.setItem('preFilledIp', formattedIp);
+
+                    // Construct the pre-filled form URL with the formatted IP address
+                    const formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + encodeURIComponent(formattedIp);
+
+                    // Redirect the user to the Google Form with the formatted IP address pre-filled
+                    window.location.href = formUrl;
+                })
+                .catch(error => {
+                    console.error('Error fetching IP address:', error);
+                    alert('Unable to retrieve your IP address. Please try again later.');
+                });
         }
     </script>
 </head>
@@ -112,18 +107,9 @@
         </div>
         <p>Welcome to the KCB VOTES 2025 voting system! Let's make our voices heard.</p>
         <div class="button-container">
-            <button onclick="redirectToForm()">Proceed to the Google Form to Vote</button>
+            <button onclick="fetchIpAndRedirect()">Proceed to the Google Form to Vote</button>
         </div>
     </div>
     <h2>Please wait while we capture your IP address and redirect you to the form...</h2>
-    <script>
-        // Ensure the validation function is called when the form is submitted
-        window.onload = function() {
-            const form = document.querySelector('form');
-            if (form) {
-                form.onsubmit = validateIp;
-            }
-        };
-    </script>
 </body>
 </html>
