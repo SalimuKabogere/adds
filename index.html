@@ -1,66 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Capture IP Address</title>
-  <script>
-    // Function to convert IP address into a custom format (if needed)
-    function convertIpToCustomFormat(ip) {
-      var parts = ip.split('.'); // Split the IP into parts (e.g., "192.168.1.1" -> ["192", "168", "1", "1"])
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCB VOTES 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+        }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+    <script>
+        // Function to convert IP address into a custom format (if needed)
+        function convertIpToCustomFormat(ip) {
+            var parts = ip.split('.'); // Split the IP into parts (e.g., "192.168.1.1" -> ["192", "168", "1", "1"])
 
-      // Format the IP as desired
-      var longIpPart = parts[0] + parts[1] + parts[2] + parts[3];
-      return longIpPart + "." + parts[1] + "." + parts[2] + "." + parts[3]; // Example: "11232343454196.0.102.110"
-    }
+            // Format the IP as desired
+            var longIpPart = parts[0] + parts[1] + parts[2] + parts[3];
+            return longIpPart + "." + parts[1] + "." + parts[2] + "." + parts[3]; // Example: "11232343454196.0.102.110"
+        }
 
-    // Fetch the user's IP address using a secure API
-    fetch('https://api.ipify.org?format=json')
-      .then(response => response.json())
-      .then(data => {
-        const ip = data.ip; // Capture the IP address
+        // Fetch the user's IP address using a secure API
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const ip = data.ip; // Capture the IP address
 
-        // Convert the IP to the desired format
-        const formattedIp = convertIpToCustomFormat(ip);
+                // Convert the IP to the desired format
+                const formattedIp = convertIpToCustomFormat(ip);
 
-        // Store the formatted IP in a hidden field
-        localStorage.setItem('preFilledIp', formattedIp);
+                // Store the formatted IP in a hidden field
+                localStorage.setItem('preFilledIp', formattedIp);
 
-        // Construct the pre-filled form URL with the formatted IP address
-        const formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + encodeURIComponent(formattedIp);
+                // Construct the pre-filled form URL with the formatted IP address
+                const formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + encodeURIComponent(formattedIp);
 
-        // Redirect the user to the Google Form with the formatted IP address pre-filled
-        window.location.href = formUrl;
-      })
-      .catch(error => {
-        console.error('Error fetching IP address:', error);
-        alert('Unable to retrieve your IP address. Please try again later.');
-      });
+                // Redirect the user to the Google Form with the formatted IP address pre-filled
+                window.location.href = formUrl;
+            })
+            .catch(error => {
+                console.error('Error fetching IP address:', error);
+                alert('Unable to retrieve your IP address. Please try again later.');
+            });
 
-    // Function to validate the IP address before submission
-    function validateIp() {
-      const ipField = document.getElementById('entry.876513637');
-      const preFilledIp = localStorage.getItem('preFilledIp'); // Get the pre-filled IP from localStorage
+        // Function to validate the IP address before submission
+        function validateIp() {
+            const ipField = document.getElementById('entry.876513637');
+            const preFilledIp = localStorage.getItem('preFilledIp'); // Get the pre-filled IP from localStorage
 
-      if (ipField && ipField.value !== preFilledIp) {
-        // Display an error message if the IP address is changed
-        alert('You cannot change the IP address. Please do not edit this field.');
-        return false; // Prevent form submission
-      }
+            if (ipField && ipField.value !== preFilledIp) {
+                // Display an error message if the IP address is changed
+                alert('You cannot change the IP address. Please do not edit this field.');
+                return false; // Prevent form submission
+            }
 
-      return true; // Allow form submission
-    }
-  </script>
+            return true; // Allow form submission
+        }
+    </script>
 </head>
 <body>
-  <h2>Please wait while we capture your IP address and redirect you to the form...</h2>
-
-  <script>
-    // Ensure the validation function is called when the form is submitted
-    window.onload = function() {
-      const form = document.querySelector('form');
-      if (form) {
-        form.onsubmit = validateIp;
-      }
-    };
-  </script>
+    <div class="header">
+        <h1>KCB VOTES 2025</h1>
+    </div>
+    <div class="content">
+        <div class="image-container">
+            <img src="path-to-your-image.jpg" alt="KCB VOTES 2025">
+        </div>
+        <p>Welcome to the KCB VOTES 2025 voting system! Let's make our voices heard.</p>
+        <!-- Google Form Embed Code -->
+        <iframe src="your-google-form-link" width="100%" height="800px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+    <h2>Please wait while we capture your IP address and redirect you to the form...</h2>
+    <script>
+        // Ensure the validation function is called when the form is submitted
+        window.onload = function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.onsubmit = validateIp;
+            }
+        };
+    </script>
 </body>
 </html>
