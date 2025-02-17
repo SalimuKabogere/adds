@@ -31,6 +31,21 @@
             max-width: 100%;
             height: auto;
         }
+        .button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .button-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
     <script>
         // Function to convert IP address into a custom format (if needed)
@@ -78,6 +93,13 @@
 
             return true; // Allow form submission
         }
+
+        // Redirect to the Google Form when the button is clicked
+        function redirectToForm() {
+            const preFilledIp = localStorage.getItem('preFilledIp');
+            const formUrl = 'https://docs.google.com/forms/d/1Yh6_SOtprHn8q70nQ6XgQ62XKvI4jXTSLkC1EHB6eZM/viewform?usp=pp_url&entry.876513637=11232343454' + encodeURIComponent(preFilledIp);
+            window.location.href = formUrl;
+        }
     </script>
 </head>
 <body>
@@ -89,8 +111,9 @@
             <img src="path-to-your-image.jpg" alt="KCB VOTES 2025">
         </div>
         <p>Welcome to the KCB VOTES 2025 voting system! Let's make our voices heard.</p>
-        <!-- Google Form Embed Code -->
-        <iframe src="your-google-form-link" width="100%" height="800px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <div class="button-container">
+            <button onclick="redirectToForm()">Proceed to the Google Form to Vote</button>
+        </div>
     </div>
     <h2>Please wait while we capture your IP address and redirect you to the form...</h2>
     <script>
