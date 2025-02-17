@@ -47,6 +47,21 @@
             cursor: pointer;
         }
     </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KCB VOTES 2025</h1>
+    </div>
+    <div class="content">
+        <div class="image-container">
+            <img src="path-to-your-image.jpg" alt="KCB VOTES 2025">
+        </div>
+        <p>Welcome to the KCB VOTES 2025 voting system! Let's make our voices heard.</p>
+        <div class="button-container">
+            <button id="voteButton">Proceed to the Google Form to Vote</button>
+        </div>
+    </div>
+
     <script>
         function convertIpToCustomFormat(ip) {
             var parts = ip.split('.');
@@ -71,20 +86,8 @@
                     alert('Unable to retrieve your IP address. Please try again later.');
                 });
         }
+
+        document.getElementById("voteButton").addEventListener("click", fetchIpAndRedirect);
     </script>
-</head>
-<body>
-    <div class="header">
-        <h1>KCB VOTES 2025</h1>
-    </div>
-    <div class="content">
-        <div class="image-container">
-            <img src="path-to-your-image.jpg" alt="KCB VOTES 2025">
-        </div>
-        <p>Welcome to the KCB VOTES 2025 voting system! Let's make our voices heard.</p>
-        <div class="button-container">
-            <button onclick="fetchIpAndRedirect()">Proceed to the Google Form to Vote</button>
-        </div>
-    </div>
 </body>
 </html>
